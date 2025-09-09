@@ -18,7 +18,7 @@ import { supabase } from "../Private/supabase.js";
         }
     });
 
-    // Mostrar reuniones almacenadas
+    // Mostrar datos almacenados
     async function mostrarReuniones() {
         let { data, error } = await supabase.from('tabla').select('*');
 

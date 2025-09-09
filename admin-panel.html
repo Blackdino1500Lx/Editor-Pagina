@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0"></script>
+</head>
+<body>
+
+    <h1>Panel de Administración</h1>
+
+    <!-- Formulario para subir Excel -->
+    <div>
+        <input type="file" id="archivoExcel" accept=".xlsx, .xls">
+        <label for="archivoExcel" class="boton-subida">Subir Archivo Excel</label>
+        <button onclick="procesarExcel()">Importar Datos</button>
+    </div>
+
+    <!-- Formulario para agregar reuniones manualmente -->
+    <form id="Form-Add">
+  <label for="h1">Título</label>
+  <input type="text" id="h1" name="h1">
+  <label for="Phar">Párrafo</label>
+  <input type="text" id="Phar" placeholder="Agrega un texto">
+  <label for="Phar2">Texto 2</label>
+  <input type="text" id="Phar2" placeholder="Agrega otro texto">
+  <input type="file" id="archivoimg" accept="image/*" />
+  <label for="archivoimg" class="boton-subida">Subir imagen</label>
+  <img id="preview" style="max-width: 300px; display: none;" />
+  <button type="submit">Guardar Datos</button>
+</form>
+<script>
+  document.getElementById('archivoimg').addEventListener('change', function () {
+    const archivo = this.files[0];
+    if (archivo) {
+      document.querySelector('.boton-subida').textContent = ` ${archivo.name}`;
+    }
+  });
+</script>
+    <!-- Contenedor Preview -->
+    <div id="preview"></div>
+    <script type="module" src="panel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
+</html>

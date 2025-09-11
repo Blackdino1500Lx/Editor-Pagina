@@ -28,9 +28,10 @@
   <input type="text" id="Phar2" placeholder="Agrega otro texto">
   <input type="file" id="archivoimg" accept="image/*" />
   <label for="archivoimg" class="boton-subida">Subir imagen</label>
-  <img id="preview" style="max-width: 300px; display: none;" />
+  <img id="previewImg" style="max-width: 300px; display: none;" />
   <button type="submit">Guardar Datos</button>
 </form>
+<!--Implementar Boton de Borrado de Contenido, por fecha-->
 <script>
   document.getElementById('archivoimg').addEventListener('change', function () {
     const archivo = this.files[0];

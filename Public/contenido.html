@@ -9,31 +9,46 @@
 </head>
 
 <body>
-  
+
   <h1>Contenido Dinámico por Sección</h1>
 <main>
     
+  <a href="" onclick="estado(1)">
+      <section id="inicio" class="contenedor1">
+        <h2>Inicio</h2>
+        <div class="contenedor-entradas">
+          <!-- Aquí se insertarán las entradas de la sección Inicio -->
+        </div>
+      </section>
+  </a>
 
-    <section id="inicio" class="contenedor1">
-      <h2>Inicio</h2>
-      <div class="contenedor-entradas">
-        <!-- Aquí se insertarán las entradas de la sección Inicio -->
-      </div>
-    </section>
 
-    <section id="servicios" class="contenedor1">
-      <h2>Servicios</h2>
-      <div class="contenedor-entradas">
-        <!-- Aquí se insertarán las entradas de la sección Servicios -->
-      </div>
-    </section>
+    <a href="" onclick="estado(2)">
+      <section id="servicios" class="contenedor1">
+        <h2>Servicios</h2>
+        <div class="contenedor-entradas">
+          <!-- Aquí se insertarán las entradas de la sección Servicios -->
+        </div>
+      </section>
+    </a>
 
-    <section id="galeria" class="contenedor1">
-      <h2>Galería</h2>
-      <div class="contenedor-entradas">
-        <!-- Aquí se insertarán las entradas de la sección Galería -->
-      </div>
-    </section>
+
+
+    <a href="" onclick="estado(3)">
+      <section id="galeria" class="contenedor1">
+        <h2>Galería</h2>
+        <div class="contenedor-entradas">
+          <!-- Aquí se insertarán las entradas de la sección Galería -->
+        </div>
+
+      </section>
+    </a>
+
   </main>
+  <script>
+  mostrardatosPublico();
+</script>
+<script type="module" src="../panel.js"></script>
+  <script src="animaciones.js"></script>
 </body>
 </html>

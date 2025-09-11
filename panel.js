@@ -6,9 +6,10 @@ document.getElementById('Form-Add').addEventListener('submit', async function(e)
     const titulo = document.getElementById('h1').value;
     const parrafo = document.getElementById('Phar').value;
     const texto2 = document.getElementById('Phar2').value;
-    const archivoInput = document.getElementById('archivoimg');
-    const archivo = archivoInput.files[0];
-    let archivoimg = null;
+    const archivoimg = document.getElementById('archivoimg');
+    const archivo = archivoimg.files[0];
+        let imagen_url = '';
+    let nombreArchivoimg = null;
 
     if (archivo) {
         const fileName = `${Date.now()}_${archivo.name}`;
@@ -18,9 +19,9 @@ document.getElementById('Form-Add').addEventListener('submit', async function(e)
             alert('Error al subir la imagen');
             return;
         }
-        archivoimg = fileName;
+        nombreArchivoimg = fileName;
         // Definir la URL de la imagen subida
-        const imagen_url = `https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/Img/${archivoimg}`;
+            imagen_url = `https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/Img/${nombreArchivoimg}`;
         // Mostrar la imagen en el preview (img)
         const previewImg = document.getElementById('preview');
         if (previewImg && previewImg.tagName === 'IMG') {

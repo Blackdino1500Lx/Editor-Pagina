@@ -10,23 +10,23 @@ document.getElementById('Form-Add').addEventListener('submit', async function(e)
     const archivo = archivoInput.files[0];
     let archivoimg = null;
 
-        if (archivo) {
-            const fileName = `${Date.now()}_${archivo.name}`;
-            const { data, error: uploadError } = await supabase.storage.from('Img').upload(fileName, archivo);
-            if (uploadError) {
-                console.error('Error subiendo imagen:', uploadError);
-                alert('Error al subir la imagen');
-                return;
-            }
-            archivoimg = fileName;
-            // Definir la URL de la imagen subida
-            const imagen_url = `https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/Img/${archivoimg}`;
-            // Mostrar la imagen en el preview (img)
-            const previewImg = document.getElementById('preview');
-            if (previewImg && previewImg.tagName === 'IMG') {
-                previewImg.src = imagen_url;
-                previewImg.style.display = 'block';
-            }
+    if (archivo) {
+        const fileName = `${Date.now()}_${archivo.name}`;
+        const { data, error: uploadError } = await supabase.storage.from('Img').upload(fileName, archivo);
+        if (uploadError) {
+            console.error('Error subiendo imagen:', uploadError);
+            alert('Error al subir la imagen');
+            return;
+        }
+        archivoimg = fileName;
+        // Definir la URL de la imagen subida
+        const imagen_url = `https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/Img/${archivoimg}`;
+        // Mostrar la imagen en el preview (img)
+        const previewImg = document.getElementById('preview');
+        if (previewImg && previewImg.tagName === 'IMG') {
+            previewImg.src = imagen_url;
+            previewImg.style.display = 'block';
+        }
     }
 
     const { error } = await supabase.from('entradas').insert([{ titulo, parrafo, texto2, imagen_url }]);
@@ -51,7 +51,7 @@ async function mostrardatos() {
 
         data.forEach(tema => {
             let div = document.createElement('div');
-            let imgTag = tema.archivoimg ? `<img src="https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/<Img>/${tema.archivoimg}" style="max-width:200px;" />` : '';
+            let imgTag = tema.archivoimg ? `<img src="https://etqhjkvmazpxrpsudeaa.supabase.co/storage/v1/object/public/Img/${tema.archivoimg}" style="max-width:200px;" />` : '';
             div.innerHTML = `<h3>${tema.h1}</h3>${imgTag}<p>Texto 1: ${tema.Phar}</p><p>Texto 2: ${tema.Phar2}</p>`;
             contenedor.appendChild(div);
         });

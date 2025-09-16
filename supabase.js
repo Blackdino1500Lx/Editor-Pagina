@@ -1,3 +1,4 @@
+//URL y Key cambian
 const supabaseUrl = "https://etqhjkvmazpxrpsudeaa.supabase.co";
 const supabaseKey = "sb_publishable_crYVs5YVzIpqD3fqdRNcCw_Bvl1bIeg";
 let supabase = null;

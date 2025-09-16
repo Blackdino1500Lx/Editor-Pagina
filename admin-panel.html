@@ -12,26 +12,47 @@
     <h1>Panel de Administración</h1>
 
     <!-- Formulario para subir Excel -->
-    <div>
-        <input type="file" id="archivoExcel" accept=".xlsx, .xls">
-        <label for="archivoExcel" class="boton-subida">Subir Archivo Excel</label>
-        <button onclick="procesarExcel()">Importar Datos</button>
-    </div>
 
-    <!-- Formulario para agregar reuniones manualmente -->
+<div class="div-forms">
+  <!--Formulario anadir contenido-->
     <form id="Form-Add">
+      <h2>Anadir contenido</h2>
   <label for="h1">Título</label>
   <input type="text" id="h1" name="h1">
   <label for="Phar">Párrafo</label>
   <input type="text" id="Phar" placeholder="Agrega un texto">
   <label for="Phar2">Texto 2</label>
   <input type="text" id="Phar2" placeholder="Agrega otro texto">
-  <input type="file" id="archivoimg" accept="image/*" />
-  <label for="archivoimg" class="boton-subida">Subir imagen</label>
-  <img id="previewImg" style="max-width: 300px; display: none;" />
-  <button type="submit">Guardar Datos</button>
+  <div class="Btns">
+    <article class="btns-art">
+      <input type="file" id="archivoimg" accept="image/*" />
+      <label for="archivoimg" class="boton-subida">Subir imagen</label>
+      <img id="previewImg" style="max-width: 300px; display: none;" />
+      <button class="save" type="submit">Guardar Datos</button>
+    </article>
+    <article class="btns-art">
+    <input type="file" id="archivoExcel" accept=".xlsx, .xls">
+    <label for="archivoExcel" class="boton-subida">Subir Archivo Excel</label>
+    <button onclick="procesarExcel()">Guardar Datos Excel</button>
+    </article>
+  </div>
 </form>
-<!--Implementar Boton de Borrado de Contenido, por fecha-->
+
+  <!--Formulario Eliminar contenido-->
+ 
+  <form action="" id="Form-Delete">
+     <h2>Borrar contenido</h2>
+    <label for="deleteId">ID del Contenido</label>
+    <input type="number" id="deleteId" name="deleteId" placeholder="Ingresa el Id">
+    <label for="Name-Content">Nombre del Articulo</label>
+    <input type="text" id="Name-Content" name="Name-Content" placeholder="Ingresa el Nombre del Articulo">
+    <button type="submit">Borrar Contenido</button>
+    <button id="Del-All" type="submit">Borrar Todo</button>
+  </form>
+
+</div>
+    
+
 <script>
   document.getElementById('archivoimg').addEventListener('change', function () {
     const archivo = this.files[0];
@@ -39,10 +60,12 @@
       document.querySelector('.boton-subida').textContent = ` ${archivo.name}`;
     }
   });
+  
 </script>
     <!-- Contenedor Preview -->
     <div id="preview"></div>
+    <script type="module" src="supabase.js"></script>
     <script type="module" src="panel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-</body>
+    </body>
 </html>

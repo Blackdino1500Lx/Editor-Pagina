@@ -1,6 +1,6 @@
 body{
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 20px;
     box-sizing: 0;
     
 }
@@ -8,9 +8,61 @@ body{
     --primario:#333;
 
 }
-main{
-    display: flex;
+h1{
+    text-align: center;
 }
-.contenedor1{
-    margin: 20px;
+
+.btn-cont{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#btnMostrarPublico{
+width: 8rem;
+height: 2rem;
+border: none;
+border-radius: 5px;
+color: white;
+background-color: #0077cc;
+margin: 2rem;
+}
+
+
+.contenedor-entradas{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.img-pre{
+    max-width: 200px;
+}
+
+.titulo-pre{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text1, .text2{
+    text-align: center;
+    width:100%;
+    font-size: 16px;
+    color: #333;
+}
+
+
+.card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem;
+    width: 400px;
+    text-align: center;
+
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }

@@ -1,5 +1,6 @@
+//Uso de funcion Supabase
 const supabase = window.supabaseInstance;
-
+//Capturar acciones del form, para enviar Datos a la BAse de Datos
 document.getElementById('Form-Add').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -19,6 +20,7 @@ document.getElementById('Form-Add').addEventListener('submit', async function(e)
             alert('Error al subir la imagen');
             return;
         }
+        //Generar una url a cada imagen subida al storage de la Base de Datos, para despiues insertarla en la pagina
         nombreArchivoimg = fileName;
         // Definir la URL de la imagen subida
         //Esta URL cambia
@@ -41,44 +43,84 @@ document.getElementById('Form-Add').addEventListener('submit', async function(e)
         mostrardatos();
     }
 });
-
+//FUncion para mostar los datos en la seccion preview del Panel de Administracion
 async function mostrardatos() {
     let { data, error } = await supabase.from('entradas').select('*');
-
+// pide los datos a SUpabase mediante el anon key
     if (error) {
         console.error("Error obteniendo datos:", error);
     } else {
-        const contenedor = document.getElementById('preview');
-        contenedor.innerHTML = "";
 
-        data.forEach(tema => {
-            let div = document.createElement('div');
-            // Usar imagen_url si existe
-            let imgTag = tema.imagen_url ? `<img src="${tema.imagen_url}" style="max-width:200px;" />` : '';
-            div.innerHTML = `<h3>${tema.titulo || tema.h1 || ''}</h3>${imgTag}<p>Texto 1: ${tema.parrafo || tema.Phar || ''}</p><p>Texto 2: ${tema.texto2 || tema.Phar2 || ''}</p>`;
-            contenedor.appendChild(div);
-        });
+        // renderizado de contenido
+const contenedor = document.getElementById('preview');
+contenedor.innerHTML = "";
+
+data.forEach(tema => {
+    const card = document.createElement('div');
+    card.classList.add('card'); // Aquí aplicas la clase CSS
+    const titulo = document.createElement('h3');
+    titulo.classList.add('titulo-pre');
+    titulo.textContent = tema.titulo || tema.h1 || '';
+
+    const img = document.createElement('img');
+    img.classList.add('img-pre');
+    img.src = tema.imagen_url || '';
+    img.alt = 'Imagen';
+    img.style.maxWidth = '100%';
+
+    const texto1 = document.createElement('p');
+    texto1.classList.add('text1');
+    texto1.textContent = `Texto 1: ${tema.parrafo || tema.Phar || ''}`;
+
+    const texto2 = document.createElement('p');
+    texto2.classList.add('text2');
+    texto2.textContent = `Texto 2: ${tema.texto2 || tema.Phar2 || ''}`;
+
+    // Añadir elementos a la card
+    card.appendChild(titulo);
+    if (tema.imagen_url) card.appendChild(img);
+    card.appendChild(texto1);
+    card.appendChild(texto2);
+
+    // Añadir la card al contenedor
+    contenedor.appendChild(card);
+});
+
     }
 }
 
+/*
+//Funcion para usarla en la pagina publica de la pagina 
 async function mostrardatosPublico() {
-    let { data, error } = await supabase.from('entradas').select('*');
-    if (error) {
-        console.error("Error obteniendo datos:", error);
-        return;
-    }
-    // Selecciona el contenedor de la sección Inicio
-    const contenedor = document.querySelector('#inicio .contenedor-entradas');
-    if (!contenedor) return;
-    contenedor.innerHTML = "";
-    data.forEach(tema => {
-        let div = document.createElement('div');
-        let imgTag = tema.imagen_url ? `<img src="${tema.imagen_url}" style="max-width:200px;" />` : '';
-        div.innerHTML = `<h3>${tema.titulo || tema.h1 || ''}</h3>${imgTag}<p>Texto 1: ${tema.parrafo || tema.Phar || ''}</p><p>Texto 2: ${tema.texto2 || tema.Phar2 || ''}</p>`;
-        contenedor.appendChild(div);
-    });
-}
+  let { data, error } = await supabase.from("entradas").select("*");
+  if (error) {
+    console.error("Error obteniendo datos:", error);
+    return;
+  }
 
+  const contenedor = document.querySelector("#inicio .contenedor-entradas");
+  if (!contenedor) return;
+
+  contenedor.innerHTML = "";
+
+  data.forEach((tema) => {
+    let div = document.createElement("div");
+    let imgTag = tema.imagen_url
+      ? `<img src="${tema.imagen_url}" style="max-width:200px;" />`
+      : "";
+    div.innerHTML = `<h3>${
+      tema.titulo || tema.h1 || ""
+    }</h3>${imgTag}<p>Texto 1: ${
+      tema.parrafo || tema.Phar || ""
+    }</p><p>Texto 2: ${tema.texto2 || tema.Phar2 || ""}</p>`;
+    contenedor.appendChild(div);
+  });
+}
+  window.mostrardatosPublico = mostrardatosPublico;
+*/ 
+
+
+//Funcion para procesar el archivo excel y que los datos se guarden dentro de la BASE DE DATOS 
 async function procesarExcel() {
     const input = document.getElementById('archivoExcel');
     const file = input.files[0];

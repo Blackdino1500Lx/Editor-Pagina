@@ -6,55 +6,26 @@
   <meta name="author" content="INA Desarrollo web 2025">
   <meta name="keywords" content="INA Desarrollo-web-2025 Ala">
   <link rel="stylesheet" href="estilos/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0"></script>
+
 </head>
 
 <body>
 
   <h1>Contenido Dinámico por Sección</h1>
-<main>
     
-  <a href="" onclick="estado(1)">
-      <section id="inicio" class="contenedor1">
-        <h2>Inicio</h2>
-        <div class="contenedor-entradas">
-          <!-- Aquí se insertarán las entradas de la sección Inicio -->
-        </div>
-      </section>
-  </a>
+  <div class="btn-cont" >
+  <button id="btnMostrarPublico">Ver Contenido</button>
+  </div>
+<main>
+<section id="inicio">
+  <div class="contenedor-entradas"></div>
+</section>
+</main>
 
-
-    <a href="" onclick="estado(2)">
-      <section id="servicios" class="contenedor1">
-        <h2>Servicios</h2>
-        <div class="contenedor-entradas">
-          <!-- Aquí se insertarán las entradas de la sección Servicios -->
-        </div>
-      </section>
-    </a>
-
-
-
-    <a href="" onclick="estado(3)">
-      <section id="galeria" class="contenedor1">
-        <h2>Galería</h2>
-        <div class="contenedor-entradas">
-          <!-- Aquí se insertarán las entradas de la sección Galería -->
-        </div>
-
-      </section>
-    </a>
-
-    <div id="contenidoCambiante">
-
-    </div>
-
-
-  </main>
-  <script>
-  
-  SwitchEstados();
 </script>
-<script type="module" src="../panel.js"></script>
-  <script src="animaciones.js"></script>
+<script type="module" src="./SwitchEstados.js"></script>
+<script type="module" src="../supabase.js"></script>
+
 </body>
 </html>
